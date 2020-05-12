@@ -27,7 +27,7 @@ router.post("/register", function(req, res){
        } 
        // Login and redirect to campgrounds
        passport.authenticate("local")(req, res, function(){
-           req.flash("success", "Account successfully created. Welcome to YelpCamp " + user.username);
+           req.flash("success", "Account successfully created. Welcome to YelpCamp, " + user.username);
            res.redirect("/campgrounds");
        });
     });
