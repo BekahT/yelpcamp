@@ -2,7 +2,8 @@
 <html>
     <head>
         <title>YelpCamp</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="/stylesheets/landing.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
     </head>
@@ -24,10 +25,10 @@
     <div id="landing-header">
  		<h1>Welcome to YelpCamp!</h1>
         <a href="/campgrounds" class="btn btn-lg btn-success">View All Campgrounds</a>
-        <form action="/campgrounds" method="GET" class="form-inline search-form">
+        <form action="/campgrounds" method="GET" class="form-inline justify-content-center mt-4">
             <div class="form-group">
                 <input class="form-control" type="text" name="search" placeholder="Campground Name">
-                <button class="btn btn-default" type="submit" value="Search" title="Search campgrounds by full or partial name"><i class="fas fa-search-location"></i> Search</button>
+                <button class="btn btn-light ml-2" type="submit" value="Search" title="Search campgrounds by full or partial name"><i class="fas fa-search-location"></i> Search</button>
             </div>
         </form>      
     </div>

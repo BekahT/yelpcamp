@@ -2,8 +2,10 @@
 
 
 <div class="row">
-   <h1 style="text-align:center;">Create a New Campground</h1>
-    <div style="width:30%; margin:30px auto;">
+    <div class="col-md-12 text-center mb-3">
+        <h1>Create a New Campground</h1>
+    </div>    
+    <div class="col-md-6 m-auto">
         <form action="/campgrounds" method="POST">
             <div class="form-group">
                 <label for="name">Name</label>
@@ -19,11 +21,9 @@
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input class="form-control" type="text" name="description" id="description" placeholder="Campground Description" required>
+                <textarea class="form-control" type="text" name="description" id="description" placeholder="Campground Description" rows="6" required></textarea>
             </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Submit Campground</button>
-            </div>
+            <button class="btn btn-success btn-lg btn-block mb-2" type="submit">Submit</button>
         </form>
         <a href="/campgrounds">Go Back</a>  
      </div>

@@ -2,10 +2,6 @@ body {
     background-color: #000;
 }
 
-.search-form {
-  margin-top: 2rem;
-}
-
 #landing-header {
   z-index: 1;
   position: relative;

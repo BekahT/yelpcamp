@@ -1,20 +1,3 @@
-.thumbnail {
-    padding: 0;
-}
-
-.thumbnail img {
-    width: 100%;
-}
-
 .delete-form {
     display: inline;
-}
-
-.search-form {
-    margin-top: 2rem;
-}
-
-.campground-list {
-    display: flex; 
-    flex-wrap: wrap;
 }

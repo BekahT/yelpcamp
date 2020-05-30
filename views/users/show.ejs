@@ -2,22 +2,22 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <h1><%= user.username %></h1>
-            <div class="thumbnail">
-                <img src="<%= user.avatar %>" alt="User Profile Avatar">
-                <a class="caption" href="mailto:<%= user.email %>"><%= user.email %></a>
+        <div class="col-md-6">
+            <div class="card">
+                <img class="card-img-top" src="<%= user.avatar %>" alt="User Profile Avatar">
+                <div class="card-body">
+                    <h3 class="card-title"><%= user.username %></h3>
+                    <a href="mailto:<%= user.email %>"><%= user.email %></a>
+                </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <div class="row">
-                <h3>Created Campgrounds</h3>
-                <ul>
-                    <% campgrounds.forEach(function(campground) { %>
-                    <li><a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a></li>
-                    <% }); %>
-                </ul>
-            </div>
+        <div class="col-md-6">
+            <h3>Created Campgrounds</h3>
+            <ul>
+                <% campgrounds.forEach(function(campground) { %>
+                <li><a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a></li>
+                <% }); %>
+            </ul>
         </div>
     </div>
 </div>
