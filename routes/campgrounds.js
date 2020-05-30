@@ -8,34 +8,52 @@ var express = require("express"),
 //INDEX - show all campgrounds
 router.get("/", function (req, res) {
     var noMatch = null;
+    var perPage = 8;
+    var pageQuery = parseInt(req.query.page);
+    var pageNumber = pageQuery ? pageQuery : 1;
     // If a search is being done
     if (req.query.search) {
         // Santize the query term
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
         // Get all matching campgrounds from DB
-        Campground.find({ name: regex }, function (err, allCampgrounds) {
+        Campground.find({name: regex}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function (err, allCampgrounds) {
+            Campground.count({name: regex}).exec(function (err, count) {
             if (err) {
                 console.log(err);
             } else {
                 if (allCampgrounds.length < 1) {
                     noMatch = "The search returned no results. Search for a different term or reset to display all campgrounds.";
                 }
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, noMatch: noMatch });
+                res.render("campgrounds/index", {
+                    campgrounds: allCampgrounds,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage),
+                    noMatch: noMatch,
+                    search: req.query.search
+                });
             }
         });
+    });
         // If no search is being done
     } else {
         // Get all campgrounds from DB
-        Campground.find({}, function (err, allCampgrounds) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.render("campgrounds/index", { campgrounds: allCampgrounds, page: 'campgrounds', noMatch: noMatch });
-            }
+        Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function (err, allCampgrounds) {
+            Campground.count().exec(function (err, count) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render("campgrounds/index", {
+                        campgrounds: allCampgrounds,
+                        current: pageNumber,
+                        pages: Math.ceil(count / perPage),
+                        noMatch: noMatch,
+                        search: false
+                    });
+                }
+            });
         });
     }
 });
-
 
 //CREATE - add new campground to DB
 router.post("/", middleware.isLoggedIn, function (req, res) {
@@ -118,17 +136,17 @@ router.put("/:slug", middleware.checkCampgroundOwnership, function (req, res) {
 });
 
 // DESTROY - delete campground
-router.delete("/:slug",middleware.checkCampgroundOwnership, function(req, res){
-    Campground.findOneAndRemove({slug: req.params.slug}, function(err){
-       if(err){
+router.delete("/:slug", middleware.checkCampgroundOwnership, function (req, res) {
+    Campground.findOneAndRemove({ slug: req.params.slug }, function (err) {
+        if (err) {
             req.flash("error", "Requested campground was not found");
-           res.redirect("/campgrounds");
-       } else {
+            res.redirect("/campgrounds");
+        } else {
             req.flash("success", "Campground successfully deleted");
-           res.redirect("/campgrounds");
-       }
+            res.redirect("/campgrounds");
+        }
     });
- });
+});
 
 // Strip out unsafe characters
 function escapeRegex(text) {
