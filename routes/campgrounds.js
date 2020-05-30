@@ -23,7 +23,7 @@ router.get("/", function (req, res) {
                 res.render("campgrounds/index", { campgrounds: allCampgrounds, noMatch: noMatch });
             }
         });
-    // If no search is being done
+        // If no search is being done
     } else {
         // Get all campgrounds from DB
         Campground.find({}, function (err, allCampgrounds) {
@@ -69,8 +69,8 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
 });
 
 // SHOW - show more info about one campground
-router.get("/:id", function (req, res) {
-    Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
+router.get("/:slug", function (req, res) {
+    Campground.findOne({ slug: req.params.slug }).populate("comments").exec(function (err, foundCampground) {
         if (err || !foundCampground) {
             console.log(err);
             req.flash("error", "Requested campground was not found");
@@ -82,8 +82,8 @@ router.get("/:id", function (req, res) {
 });
 
 // EDIT - show form to edit existing campground
-router.get("/:id/edit", middleware.checkCampgroundOwnership, function (req, res) {
-    Campground.findById(req.params.id, function (err, foundCampground) {
+router.get("/:slug/edit", middleware.checkCampgroundOwnership, function (req, res) {
+    Campground.findOne({ slug: req.params.slug }, function (err, foundCampground) {
         if (err || !foundCampground) {
             console.log(err);
             req.flash("error", "Requested campground was not found");
@@ -94,33 +94,41 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, function (req, res)
 });
 
 // UPDATE - make updates to existing campground
-router.put("/:id", middleware.checkCampgroundOwnership, function (req, res) {
-    Campground.findOneAndUpdate({ "_id": req.params.id }, req.body.campground, function (err, updatedCampground) {
+router.put("/:slug", middleware.checkCampgroundOwnership, function (req, res) {
+    Campground.findOne({ slug: req.params.slug }, function (err, campground) {
         if (err) {
-            console.log(err);
             req.flash("error", "Requested campground was not found");
             res.redirect("/campgrounds");
         } else {
-            req.flash("success", "Campground successfully updated");
-            res.redirect("/campgrounds/" + req.params.id);
+            campground.name = req.body.campground.name;
+            campground.description = req.body.campground.description;
+            campground.image = req.body.campground.image;
+            campground.save(function (err) {
+                if (err) {
+                    console.log(err);
+                    req.flash("error", "An error occurred while saving the update");
+                    res.redirect("/campgrounds");
+                } else {
+                    req.flash("success", "Campground successfully updated");
+                    res.redirect("/campgrounds/" + campground.slug);
+                }
+            });
         }
     });
 });
-
 
 // DESTROY - delete campground
-router.delete("/:id", middleware.checkCampgroundOwnership, function (req, res) {
-    Campground.findOneAndDelete({ "_id": req.params.id }, function (err) {
-        if (err) {
-            console.log(err);
+router.delete("/:slug",middleware.checkCampgroundOwnership, function(req, res){
+    Campground.findOneAndRemove({slug: req.params.slug}, function(err){
+       if(err){
             req.flash("error", "Requested campground was not found");
-            res.redirect("/campgrounds");
-        } else {
+           res.redirect("/campgrounds");
+       } else {
             req.flash("success", "Campground successfully deleted");
-            res.redirect("/campgrounds");
-        }
+           res.redirect("/campgrounds");
+       }
     });
-});
+ });
 
 // Strip out unsafe characters
 function escapeRegex(text) {

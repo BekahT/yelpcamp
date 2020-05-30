@@ -48,9 +48,9 @@ app.use(function(req, res, next){
 });
 
 // Use Route Files
-app.use(indexRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:slug/comments", commentRoutes);
 
 app.listen(process.env.PORT, process.env.IP, function(){
     console.log("The YelpCamp Server Has Started!");

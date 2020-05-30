@@ -6,13 +6,13 @@
         <h1>Edit Review</h1>
     </div>     
     <div class="col-md-6 m-auto">
-        <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+        <form action="/campgrounds/<%= campground_slug %>/comments/<%= comment._id %>?_method=PUT" method="POST">
             <div class="form-group">
                 <textarea class="form-control" type="text" name="comment[text]" rows="6"><%= comment.text %></textarea>
             </div>
             <button class="btn btn-lg btn-success btn-block mb-2">Update Review</button>
         </form>
-        <a href="/campgrounds/<%= campground_id %>">Go Back</a>
+        <a href="/campgrounds/<%= campground_slug %>">Go Back</a>
     </div>
 </div>
 

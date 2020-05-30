@@ -6,13 +6,13 @@
         <h1>Add New Review For <br> <%= campground.name %></h1>
     </div> 
     <div class="col-md-6 m-auto">
-        <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+        <form action="/campgrounds/<%= campground.slug %>/comments" method="POST">
             <div class="form-group">
                 <textarea class="form-control" type="text" name="comment[text]" rows="6" placeholder="Review text..."></textarea>
             </div>
             <button class="btn btn-lg btn-success btn-block mb-2">Submit Review</button>
         </form>
-        <a href="/campgrounds/<%= campground._id %>">Go Back</a>
+        <a href="/campgrounds/<%= campground.slug %>">Go Back</a>
     </div>
 </div>
 
