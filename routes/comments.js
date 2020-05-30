@@ -59,7 +59,6 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, 
 router.put("/:comment_id", middleware.checkCommentOwnership, function (req, res) {
     Comment.findOneAndUpdate({ "_id": req.params.comment_id }, req.body.comment, function (err, updatedComment) {
         if (err) {
-            console.log(err);
             req.flash("error", "Requested review was not found");
             res.redirect("back");
         } else {
@@ -73,7 +72,6 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function (req, res)
 router.delete("/:comment_id", middleware.checkCommentOwnership, function (req, res) {
     Comment.findOneAndDelete({ "_id": req.params.comment_id }, function (err) {
         if (err) {
-            console.log(err);
             req.flash("error", "Requested review was not found");
             res.redirect("back");
         } else {

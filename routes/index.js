@@ -26,7 +26,6 @@ router.post("/register", function (req, res) {
     }
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
-            console.log(err);
             return res.render("register", { "error": "Error: " + err.message });
         }
         // Login and redirect to campgrounds

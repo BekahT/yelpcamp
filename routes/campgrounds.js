@@ -74,7 +74,6 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
             console.log(err);
         } else {
             //redirect back to campgrounds page
-            console.log(newlyCreated);
             req.flash("success", "Campground successfully created");
             res.redirect("/campgrounds");
         }
@@ -90,7 +89,6 @@ router.get("/new", middleware.isLoggedIn, function (req, res) {
 router.get("/:slug", function (req, res) {
     Campground.findOne({ slug: req.params.slug }).populate("comments").exec(function (err, foundCampground) {
         if (err || !foundCampground) {
-            console.log(err);
             req.flash("error", "Requested campground was not found");
             res.redirect("back");
         } else {
@@ -103,7 +101,6 @@ router.get("/:slug", function (req, res) {
 router.get("/:slug/edit", middleware.checkCampgroundOwnership, function (req, res) {
     Campground.findOne({ slug: req.params.slug }, function (err, foundCampground) {
         if (err || !foundCampground) {
-            console.log(err);
             req.flash("error", "Requested campground was not found");
         } else {
             res.render("campgrounds/edit", { campground: foundCampground });
@@ -123,7 +120,6 @@ router.put("/:slug", middleware.checkCampgroundOwnership, function (req, res) {
             campground.image = req.body.campground.image;
             campground.save(function (err) {
                 if (err) {
-                    console.log(err);
                     req.flash("error", "An error occurred while saving the update");
                     res.redirect("/campgrounds");
                 } else {

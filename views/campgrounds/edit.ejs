@@ -22,9 +22,9 @@
                 <label for="description">Description</label>
                 <textarea class="form-control" type="text" name="campground[description]" id="description" rows="6" required><%= campground.description %></textarea>
             </div>
-            <button class="btn btn-success btn-lg btn-block mb-2" type="submit">Submit Update</button>
+            <button class="btn btn-success mb-2" type="submit">Submit Update</button>
+            <a class="btn btn-secondary mb-2" href="/campgrounds/<%= campground.slug %>">Cancel</a>
         </form>
-        <a href="/campgrounds">Go Back</a>  
      </div>
 </div>
 
