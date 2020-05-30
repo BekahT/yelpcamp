@@ -68,7 +68,7 @@ var Comment = require("./models/comment");
 var seeds = [
     {
         name: "Mountain Mist",
-        price: 30.50,
+        price: 30.55,
         image: "https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
         description: "Cupcake ipsum dolor sit amet pastry. Bonbon soufflé cake carrot cake jelly. Pastry powder dessert jelly-o soufflé cotton candy cake muffin. Caramels bear claw croissant wafer toffee chocolate bar muffin jelly beans lollipop.",
         author: {
@@ -98,7 +98,7 @@ var seeds = [
     },
     {
         name: "Sunrise Hill",
-        price: 20.50,
+        price: 20.85,
         image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
         description: "Cupcake ipsum dolor sit amet macaroon. Cupcake dessert chocolate bar bonbon toffee. Topping carrot cake marshmallow fruitcake fruitcake brownie sesame snaps tiramisu lollipop.",
         author: {
@@ -158,7 +158,7 @@ var seeds = [
     },
     {
         name: "Granite Hill",
-        price: 18.30,
+        price: 18.35,
         image: "https://images.unsplash.com/photo-1502218808493-e5fd26249efc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
         description: "Cupcake ipsum dolor sit amet macaroon. Cupcake dessert chocolate bar bonbon toffee. Topping carrot cake marshmallow fruitcake fruitcake brownie sesame snaps tiramisu lollipop.",
         author: {
@@ -198,7 +198,7 @@ var seeds = [
     },
     {
         name: "Open Sky",
-        price: 65.50,
+        price: 65.55,
         image: "https://images.unsplash.com/photo-1496947850313-7743325fa58c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
         description: "Cupcake ipsum dolor sit amet macaroon. Cupcake dessert chocolate bar bonbon toffee. Topping carrot cake marshmallow fruitcake fruitcake brownie sesame snaps tiramisu lollipop.",
         author: {
@@ -228,7 +228,7 @@ var seeds = [
     },
     {
         name: "Jade Forest",
-        price: 16.50,
+        price: 16.55,
         image: "https://images.unsplash.com/photo-1533575770077-052fa2c609fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
         description: "Cupcake ipsum dolor sit amet macaroon. Cupcake dessert chocolate bar bonbon toffee. Topping carrot cake marshmallow fruitcake fruitcake brownie sesame snaps tiramisu lollipop.",
         author: {
@@ -268,7 +268,7 @@ var seeds = [
     },
     {
         name: "Safari Glamping",
-        price: 85.50,
+        price: 85.55,
         image: "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
         description: "Cupcake ipsum dolor sit amet macaroon. Cupcake dessert chocolate bar bonbon toffee. Topping carrot cake marshmallow fruitcake fruitcake brownie sesame snaps tiramisu lollipop.",
         author: {
