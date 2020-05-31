@@ -3,21 +3,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card text-white bg-dark">
+                <h3 class="card-header text-center"><%= user.username %></h3>
                 <img class="card-img-top" src="<%= user.avatar %>" alt="User Profile Avatar">
-                <div class="card-body">
-                    <h3 class="card-title"><%= user.username %></h3>
-                    <a href="mailto:<%= user.email %>"><%= user.email %></a>
-                </div>
             </div>
         </div>
         <div class="col-md-6">
-            <h3>Created Campgrounds</h3>
-            <ul>
+            <div class="list-group">
+                <h3 class="list-group-item text-white bg-dark text-center">Created Campgrounds</h3>
                 <% campgrounds.forEach(function(campground) { %>
-                <li><a href="/campgrounds/<%= campground.slug %>"><%= campground.name %></a></li>
+                    <a href="/campgrounds/<%= campground.slug %>" class="list-group-item list-group-item-action"><%= campground.name %> - $<%= campground.price %>/night</a>
                 <% }); %>
-            </ul>
+              </div>
         </div>
     </div>
 </div>
